@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
-import {fetchUsers} from "../store/action-creators/user";
 import {useActions} from "../hooks/useActions";
 
 const UserList: React.FC = () => {
@@ -9,7 +8,7 @@ const UserList: React.FC = () => {
 
     useEffect(() => {
         fetchUsers()
-    }, [])
+    }, [fetchUsers])
 
     if (loading) {
         return <h1>Идет загрузка...</h1>
