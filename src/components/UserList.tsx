@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {useTypedSelector} from "../hooks/useTypedSelector";
-import {fetchUsers} from "../store/action-creators/user";
-import {useActions} from "../hooks/useActions";
+import { useEffect, FC } from 'react';
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { useActions } from "../hooks/useActions";
+import { UserModel } from '../types/user';
 
-const UserList: React.FC = () => {
-    const {users, error, loading} = useTypedSelector(state => state.user)
-    const {fetchUsers} = useActions()
+const UserList: FC = () => {
+    const { users, error, loading } = useTypedSelector(state => state.user)
+    const { fetchUsers } = useActions()
 
     useEffect(() => {
         fetchUsers()
@@ -20,8 +20,8 @@ const UserList: React.FC = () => {
 
     return (
         <div>
-            {users.map(user =>
-                <div key={user.id}>{user.name}</div>
+            {users.map((user: UserModel) =>
+                <div key={user.id}>Name: {user.name} - company: {user.company.name}</div>
             )}
         </div>
     );
